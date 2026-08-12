@@ -31,7 +31,7 @@ def start():
     print("Choose a tool")
     print("1. Triangle Analyzer")
     print("2. Exit")
-    option= input()
+    option= int(input())
     return option 
 
 # First option(Triangle analizer) functions
