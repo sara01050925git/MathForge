@@ -8,15 +8,35 @@ import math
 """ Start the programm and Check wich option the user select , call functions based on selection &
  print the result"""
 def main():
-    option=start()
-    if option==3:
-        print("MathForge is closed")
-    elif option==1:
-        geometry_lab()
-    elif option==2:
-        number_theory_lab()
-    else:
-        print("Please enter a valid number")
+    while True:
+        option=start()
+        if option==3:
+            print("MathForge is closed")
+            quit()
+        elif option==1:
+            print("Choose a tool")
+            print("1. Triangle Analyzer")
+            print("2. Back")
+            option= get_option()
+            if option==2:
+                pass
+            elif option==1:
+                triangle_analyzer()
+            else:
+                    print("Please enter a valid number")
+        elif option==2:
+            print("Choose a tool")
+            print("1. Analize number")
+            print("2. Back")
+            option=get_option()
+            if option==2:
+                pass
+            elif option==1:
+                analyze_number()
+            else:
+                    print("Please enter a valid number")
+        else:
+            print("Please enter a valid number")
 
 """Start the programm and Get user selection"""
 def start():
@@ -28,42 +48,51 @@ def start():
     print("1. Geometry lab")
     print("2. Numbertheory lab")
     print("3. Exit")
-    option= int(input())
-    return option 
+    option=get_option()
+    return option
+
+def get_option():
+    while True:
+        try:
+            option= int(input())
+            return option
+        except ValueError:
+            print("Please enter a valid number")
+    
 
 
 # Functions related to geometry lab 
-def geometry_lab():
-    print("Choose a tool")
-    print("1. Triangle Analyzer")
-    print("2. Back")
-    option= int(input())
-    if option==2:
-        main()
-    elif option==1:
-        triangle_analyzer()
-    else:
-        print("Please enter a valid number")
-    
 def triangle_analyzer():
-    side1 , side2, side3 = triangle_side_input()
-    if is_triangle(side1 , side2 , side3):
-        print(" Result ".center(70,"="))
-        print("Valid Triangle  : Yes" )
-        print(f"Type           : {triangle_type_detect(side1 , side2, side3)}")
-        print(f"Right Triangle : {is_rightangle(side1, side2 , side3)}")
-        print(70*sep_sign) 
-    else :
-        print("This is not a valid Triangle!")
+    while True:
+        side1,side2,side3=get_sides()
         
-# First option(Triangle analizer) functions
-def triangle_side_input():
-    side1= float(input("Enter the first sides length: "))
-    side2= float(input("Enter the second sides length: "))
-    side3= float(input("Enter the third sides length: "))
-    return side1 , side2 , side3
+        if is_triangle(side1 , side2 , side3):
+            break
+        else:
+            print("oops,It's Not A triangle!")
+    print(" Result ".center(70,"="))
+    print("Valid Triangle  : Yes" )
+    print(f"Type           : {triangle_type_detect(side1 , side2, side3)}")
+    print(f"Right Triangle : {is_rightangle(side1, side2 , side3)}")
+    print(70*sep_sign) 
+            
 
-def is_triangle(side1 , side2 , side3):
+def get_sides():
+    i=0
+    sides=[1 ,1 ,1 ]
+    for side in sides:
+        i=i+1
+        while True:
+            try:
+                sides[i-1]=float(input(f"Enter the length of side{i}: "))
+                if sides[i-1]<=0:
+                    raise ValueError
+                break
+            except ValueError:
+                print("⚠  Enter a posetive NUMBER as sidelength")
+    return sides
+
+def is_triangle(side1,side2,side3):
     sum12 = side1 + side2
     sum13 = side1 + side3
     sum23 = side2 + side3
@@ -81,7 +110,6 @@ def triangle_type_detect(side1, side2 , side3):
         return "scalene" 
     
 def is_rightangle(side1, side2 , side3):
-    import math
     magnitude=math.log(side1,10)
     sqr_side1=side1*side1
     sqr_side1_plus= sqr_side1 + magnitude/20
@@ -98,22 +126,19 @@ def is_rightangle(side1, side2 , side3):
         return "No"
 
 
-
 #Functions related to number_theory_lab
-def number_theory_lab():
-    print("Choose a tool")
-    print("1. Analize number")
-    print("2. Back")
-    option= int(input())
-    if option==2:
-        main()
-    elif option==1:
-        analyze_number()
-    else:
-        print("Please enter a valid number")
-
 def analyze_number():
-    number = int(input("Please enter an Integer: "))
+    while True:
+        try:
+            number = int(input("Please enter an Integer: "))
+            if number < 0:
+                 print("Please enter a postive integer.")
+            else :
+                break
+        except ValueError:
+            print("Please enter an integer: ")
+
+
     divisors=number_divisors(number)
     print(" Result ".center(70,"="))
     print(f"Prime Number:   {prime_number(number)}")
