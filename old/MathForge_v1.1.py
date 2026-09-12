@@ -1,7 +1,7 @@
-# Handle invalid input after learning try/except.
+
 # Change tolerance of righangle() function to relative tolerance
 # Optimize number_divisors()
-# Improve the construction of back button
+
 sep_sign= "="
 import math
 
