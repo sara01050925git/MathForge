@@ -1,4 +1,4 @@
-sep_sign= "="
+sep_sign= "-"
 version = "v1.0.0"
 import geometry
 import number_theory
