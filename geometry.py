@@ -10,11 +10,8 @@ def triangle_analyzer():
             break
         else:
             print("oops,It's Not A triangle!")
-    print(" Result ".center(70,"="))
-    print("Valid Triangle  : Yes" )
-    print(f"Type           : {triangle_type_detect(side1 , side2, side3)}")
-    print(f"Right Triangle : {is_rightangle(side1, side2 , side3)}")
-    print(70*sep_sign) 
+    result(side1,side2,side3)
+     
             
 
 def get_sides():
@@ -64,3 +61,9 @@ def is_rightangle(side1, side2 , side3):
         return "Yes"
     else: 
         return "No"
+
+def result(side1,side2,side3):
+    print(" Result ".center(70,"="))
+    print("Valid Triangle  : Yes" )
+    print(f"Type           : {triangle_type_detect(side1 , side2, side3)}")
+    print(f"Right Triangle : {is_rightangle(side1, side2 , side3)}")

@@ -2,13 +2,14 @@ sep_sign= "="
 version = "v1.0.0"
 import geometry
 import number_theory
+import callculator
 
 """ Start the programm and Check wich option the user select , call functions based on selection &
  print the result"""
 def main():
     while True:
         option=start()
-        if option==3:
+        if option==4:
             print("MathForge is closed")
             quit()
         elif option==1:
@@ -33,8 +34,10 @@ def main():
                 number_theory.analyze_number()
             else:
                     print("Please enter a valid number")
-        else:
-            print("Please enter a valid number")
+        elif option==3:
+
+            callculator.main()
+
 
 """Start the programm and Get user selection"""
 def start():
@@ -45,7 +48,8 @@ def start():
     print("Choose a tool")
     print("1. Geometry lab")
     print("2. Numbertheory lab")
-    print("3. Exit")
+    print("3. Callculator")
+    print("4. Exit")
     option=get_option()
     return option
 
